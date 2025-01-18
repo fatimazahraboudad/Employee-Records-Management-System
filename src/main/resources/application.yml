@@ -1,0 +1,31 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: EmployeeRecordsManagementSystem
+  datasource:
+    password: fatiboudad@123
+    username: oracle_user
+    url: jdbc:oracle:thin:@localhost:1521:EmployeeDB
+    driver-class-name: oracle.jdbc.OracleDriver
+  jpa:
+    database: oracle
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.Oracle12cDialect
+        types.print.banner: false
+        format_sql: true
+
+
+token:
+  signing:
+    key: koa87doom02hoax08valid02udatta08320dalliance80we8redwood0232dd87
+    expiration: 604800000    # 1 day for access token
+    refresh-token:
+      expiration: 3600000  # 1 hour for refresh toke
+
+
