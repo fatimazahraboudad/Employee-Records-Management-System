@@ -41,15 +41,15 @@ public class UserController {
 
     @LogRequest(action = "Get user by id")
     @PreAuthorize("hasRole(@R.ROLE_ADMIN)")
-    @GetMapping("/users/me/{idUser}")
+    @GetMapping("/users/get/{idUser}")
     public ResponseEntity<UserDto> getUserById(@PathVariable String idUser) {
         return new ResponseEntity<>(userService.getUserById(idUser), HttpStatus.OK);
     }
 
     @LogRequest(action = "Update profile")
     @PreAuthorize("hasRole(@R.ROLE_HR) or hasRole(@R.ROLE_ADMIN) or hasRole(@R.ROLE_MANAGER)")
-    @PutMapping("/users/me")
-    public ResponseEntity<UserDto> UpdateProfile(@Validated @RequestBody UserDto userDto) {
+    @PutMapping("/users/update")
+    public ResponseEntity<UserDto> Update(@Validated @RequestBody UserDto userDto) {
         return new ResponseEntity<>(userService.updateUser(userDto), HttpStatus.OK);
     }
 
@@ -90,4 +90,10 @@ public class UserController {
         return new ResponseEntity<>(userService.removeAuthority(idUser,name), HttpStatus.OK);
     }
 
+    @LogRequest(action = "Delete user")
+    @PreAuthorize("hasRole(@R.ROLE_ADMIN)")
+    @DeleteMapping("/users/delete/{idUser}")
+    public ResponseEntity<String> deleteUser(@PathVariable String idUser) {
+        return new ResponseEntity<>(userService.deleteUser(idUser), HttpStatus.OK);
+    }
 }

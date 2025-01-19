@@ -27,9 +27,9 @@ public class EmployeeController {
         return new ResponseEntity<>(employeeService.addEmployee(employeeDto), HttpStatus.CREATED);
     }
 
-    @LogRequest(action = "Fetch all Employee")
+    @LogRequest(action = "Fetch all Employees")
     @PreAuthorize("hasRole(@R.ROLE_ADMIN) or hasRole(@R.ROLE_HR) or hasRole(@R.ROLE_MANAGER)")
-    @PostMapping("/all")
+    @PostMapping()
     public ResponseEntity<List<EmployeeDto>> getAllEmployees(@RequestBody EmployeeFilter filter) {
         return new ResponseEntity<>(employeeService.getEmployees(filter), HttpStatus.OK);
     }

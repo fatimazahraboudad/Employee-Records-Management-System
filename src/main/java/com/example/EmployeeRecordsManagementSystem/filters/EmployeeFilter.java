@@ -12,4 +12,5 @@ public class EmployeeFilter {
     private EmploymentStatus employmentStatus;
     private LocalDate hireDate;
 
+
 }

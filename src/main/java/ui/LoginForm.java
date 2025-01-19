@@ -3,7 +3,6 @@ package ui;
 import com.example.EmployeeRecordsManagementSystem.dtos.JwtAuthenticationResponse;
 import com.example.EmployeeRecordsManagementSystem.dtos.SignInRequest;
 import org.springframework.web.client.RestTemplate;
-import ui.service.EmployeeService;
 
 import javax.swing.*;
 import java.awt.*;
@@ -55,7 +54,9 @@ public class LoginForm extends JFrame {
 
         loginButton.addActionListener(new LoginAction());
         createAccountButton.addActionListener(e -> {
-            JOptionPane.showMessageDialog(this, "Create Account Form (to be implemented)");
+            CreateAccountForm createAccountForm = new CreateAccountForm();
+            createAccountForm.setVisible(true);
+            dispose();
         });
     }
 
@@ -76,8 +77,8 @@ public class LoginForm extends JFrame {
                     token = response.getAccessToken();
                     JOptionPane.showMessageDialog(LoginForm.this, "Login Successful!");
 
-                    EmployeeManagementUI employeeUI = new EmployeeManagementUI(token,new EmployeeService(token));
-                    employeeUI.setVisible(true);
+                    EmployeeManagementForm employeeForm = new EmployeeManagementForm(response);
+                    employeeForm.setVisible(true);
                     dispose();
                 } else {
                     JOptionPane.showMessageDialog(LoginForm.this, "Invalid credentials!", "Error", JOptionPane.ERROR_MESSAGE);

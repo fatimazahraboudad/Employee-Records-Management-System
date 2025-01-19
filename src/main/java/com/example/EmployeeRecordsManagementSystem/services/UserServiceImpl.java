@@ -70,11 +70,17 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public UserDto updateUser(UserDto userDto) {
-        User user = helper(getCurrentUser().getIdUser());
+        User user = helper(userDto.getIdUser());
         user.setEmail(userDto.getEmail());
         user.setPassword(bCryptPasswordEncoder.encode(userDto.getPassword()));
 
         return userMapper.toDto(userRepository.save(user));
+    }
+
+    @Override
+    public String deleteUser(String userDto) {
+        userRepository.delete(helper(userDto));
+        return "user deleted";
     }
 
 

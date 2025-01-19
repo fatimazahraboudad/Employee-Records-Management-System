@@ -17,6 +17,7 @@ public interface UserService {
     UserDto getUserById(String idUser);
 
     UserDto updateUser(UserDto userDto);
+    String deleteUser(String userDto);
 
 
     JwtAuthenticationResponse signIn(SignInRequest request) throws Exception;
